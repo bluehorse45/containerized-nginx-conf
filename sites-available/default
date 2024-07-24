@@ -1,0 +1,26 @@
+server {
+	listen                  80 default_server;
+	listen                  [::]:80 default_server;
+	
+	server_name             _;
+	
+    root                    /sites/default/;
+	index                   index.html index.htm;
+    error_page              404 /404-page.html;
+    error_page              500 502 503 504 /50x-page.html;
+}
+server {
+	listen                  443 ssl default_server;
+    listen                  [::]:443 ssl default_server;
+    http2                   on;
+	
+	server_name             _;
+
+    ssl_certificate         /certificates/wildcard_com_bluehorse45_certificate.pem;
+    ssl_certificate_key     /certificates/wildcard_com_bluehorse45_key.pem;
+	
+    root                    /sites/default/;
+	index                   index.html index.htm;
+    error_page              404 /404-page.html;
+    error_page              500 502 503 504 /50x-page.html;
+}
